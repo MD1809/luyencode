@@ -6,3 +6,6 @@ luyện tập
 
 # ảnh 2
 ![Ảnh chụp màn hình 2024-09-20 123358](https://github.com/user-attachments/assets/9dd9246f-23c2-48ab-aaac-a0c36af2638b)
+
+# ảnh thử
+![Ảnh chụp màn hình (1)](https://github.com/user-attachments/assets/2afdd884-7486-4222-ac7b-eebf3468a6b7)
