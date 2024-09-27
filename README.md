@@ -8,4 +8,4 @@ luyện tập
 ![Ảnh chụp màn hình 2024-09-20 123358](https://github.com/user-attachments/assets/9dd9246f-23c2-48ab-aaac-a0c36af2638b)
 
 # ảnh thử
-![đợi](./Ảnh 1/)
+![đợi](./Ảnh 1.png)
