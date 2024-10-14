@@ -19,6 +19,10 @@ import java.util.ResourceBundle;
 public class thanhvienController implements Initializable {
 
     @FXML
+    private Label tv_ten;
+    @FXML
+    private Label tv_maso;
+    @FXML
     private Label tv_thongbao;
     @FXML
     private TextField timkiemtensach;
@@ -53,6 +57,8 @@ public class thanhvienController implements Initializable {
 
     private String taikhoan;
     private String matkhau;
+    private String TENNGUOIDUNG;
+    private String MATHANHVIEN;
     public void laytaikhoandangnhap(String taikhoan, String matkhau) {
         this.taikhoan = taikhoan;
         this.matkhau = matkhau;
@@ -64,11 +70,37 @@ public class thanhvienController implements Initializable {
         return matkhau;
     }
 
+    public void hienthitaikhoan(){
+        boolean thongtin = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader("taikhoan.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] dulieu = line.split(",");
+                if (dulieu.length == 8) {
+                    String TAIKHOAN = dulieu[0];
+                    String MATKHAU = dulieu[1];
+                    TENNGUOIDUNG = dulieu[3];
+                    MATHANHVIEN = dulieu[7];
+                    if (TAIKHOAN.equals(getTaiKhoan()) && MATKHAU.equals(getMatKhau())) {
+                        thongtin = true;
+                        break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(thongtin){
+            tv_ten.setText(TENNGUOIDUNG);
+            tv_maso.setText(MATHANHVIEN);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ds_sach = FXCollections.observableArrayList();  // Khởi tạo ObservableList trống
         try {
-            docdulieusach();  // Đọc dữ liệu từ file
+            docdulieusach();// Đọc dữ liệu từ file
         } catch (IOException e) {
             e.printStackTrace();
         }

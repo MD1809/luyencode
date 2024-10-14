@@ -53,6 +53,7 @@ public class dangnhapController {
                 Parent root = loader.load();
                 thanhvienController controller = loader.getController();
                 controller.laytaikhoandangnhap(taikhoan, matkhau);
+                controller.hienthitaikhoan();
                 Stage stage = (Stage) dangnhap.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
