@@ -299,9 +299,10 @@ public class thanhvienController implements Initializable {
 
         boolean thongtintra = false;
         try (Connection connection = databaseConnection.getConnection()) {
-            String kiemtramaso = "SELECT * FROM muon_tra WHERE maID = ?";
+            String kiemtramaso = "SELECT * FROM muon_tra WHERE maID LIKE ? and manguoidung = (select manguoidung from nguoidung where tentaikhoan LIKE ?);";
             PreparedStatement statement = connection.prepareStatement(kiemtramaso);
             statement.setString(1, IDtra);
+            statement.setString(2, taikhoandn);
             ResultSet queryResult = statement.executeQuery();
 
             if (queryResult.next()) {

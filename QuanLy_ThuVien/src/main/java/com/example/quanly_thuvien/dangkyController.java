@@ -81,8 +81,6 @@ public class dangkyController {
                 }
             } else {
                 nguoidung thanhvienmoi = new nguoidung(tentaikhoan, matkhau, manguoidung, tennguoidung, vaitro, gioitinh, email, diachi);
-                System.out.println("Giá trị vaitro: '" + thanhvienmoi.getVaitro() + "'");
-                System.out.println("Giá trị gioitinh: '" + thanhvienmoi.getGioiTinh() + "'");
 
 
                 String themnguoidung = "INSERT INTO nguoidung (tentaikhoan,matkhau,manguoidung,tennguoidung,vaitro,gioitinh,email,diachi) VALUES (?,?,?,?,?,?,?,?)";
