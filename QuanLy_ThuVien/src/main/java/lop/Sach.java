@@ -1,18 +1,20 @@
-package com.example.quanly_thuvien;
+package lop;
 
 public class Sach {
     private String maSach;
     private String theLoai;
     private String tenSach;
     private String tenTacGia;
+    private Integer namXuatBan;
     private Integer soLuongCon;
     private String tinhTrang;
     // Constructor
-    public Sach(String maSach, String theLoai, String tenSach, String tenTacGia, Integer soLuongCon, String tinhTrang) {
+    public Sach(String maSach, String theLoai, String tenSach, String tenTacGia, Integer namXuatBan, Integer soLuongCon, String tinhTrang) {
         this.maSach = maSach;
         this.theLoai = theLoai;
         this.tenSach = tenSach;
         this.tenTacGia = tenTacGia;
+        this.namXuatBan = namXuatBan;
         this.soLuongCon = soLuongCon;
         this.tinhTrang = tinhTrang;
     }
@@ -59,5 +61,13 @@ public class Sach {
     }
     public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
+    }
+
+    public Integer getNamXuatBan() {
+        return namXuatBan;
+    }
+
+    public void setNamXuatBan(Integer namXuatBan) {
+        this.namXuatBan = namXuatBan;
     }
 }

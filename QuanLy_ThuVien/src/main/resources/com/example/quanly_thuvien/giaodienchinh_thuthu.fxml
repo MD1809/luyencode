@@ -7,18 +7,15 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="928.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanly_thuvien.thuthuquanlyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanly_thuvien.thuthuController">
     <top>
         <HBox prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <Label alignment="CENTER" prefHeight="47.0" prefWidth="206.0" style="-fx-background-color: #FF6600;" text="My library">
+            <Label alignment="CENTER" prefHeight="38.0" prefWidth="227.0" style="-fx-background-color: #FF6600;" text="library">
                 <font>
                     <Font name="System Bold Italic" size="19.0" />
                 </font>
@@ -31,49 +28,78 @@
                     <Insets bottom="5.0" top="5.0" />
                 </HBox.margin>
             </Separator>
-            <AnchorPane prefHeight="38.0" prefWidth="638.0">
+            <AnchorPane prefHeight="38.0" prefWidth="733.0">
                 <children>
-                    <Button fx:id="timkiemsach" layoutX="474.0" layoutY="6.0" mnemonicParsing="false" onAction="#timKiemSach" prefHeight="27.0" prefWidth="73.0" text="tìm kiếm" />
-                    <TextField fx:id="timkiemtensach" layoutX="259.0" layoutY="6.0" prefHeight="26.0" prefWidth="214.0" promptText="nhập tên sách" />
-                    <Button fx:id="lammoi" layoutX="608.0" layoutY="7.0" mnemonicParsing="false" onAction="#capnhatlaidulieu" text="làm mới" />
+                    <Button fx:id="timkiemsach" layoutX="382.0" layoutY="5.0" mnemonicParsing="false" onAction="#timKiemSach" prefHeight="27.0" prefWidth="73.0" text="tìm kiếm" />
+                    <TextField fx:id="timkiemtensach" layoutX="168.0" layoutY="5.0" prefHeight="26.0" prefWidth="214.0" promptText="nhập tên sách" />
+                    <Button fx:id="lammoi" layoutX="483.0" layoutY="5.0" mnemonicParsing="false" onAction="#capnhatlaidulieu" text="làm mới" />
+                     <Button fx:id="tt_dangxuat" layoutX="646.0" layoutY="6.0" mnemonicParsing="false" onAction="#tt_dangxuatController" prefHeight="26.0" prefWidth="74.0" text="Đăng Xuất">
+                  <font>
+                     <Font size="11.0" />
+                  </font>
+               </Button>
+               <Separator layoutX="615.0" layoutY="2.0" orientation="VERTICAL" prefHeight="34.0" prefWidth="11.0" />
                 </children>
             </AnchorPane>
         </HBox>
     </top>
-    <left>
-        <VBox prefHeight="352.0" prefWidth="143.0" BorderPane.alignment="CENTER">
-            <VBox prefHeight="445.0" prefWidth="152.0">
-                <ImageView fitHeight="64.0" fitWidth="79.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets left="35.0" top="20.0" />
-                    </VBox.margin>
-                    <Image url="@../../../file/thuvien.png" />
-                </ImageView>
-                <VBox minHeight="-Infinity" prefHeight="361.0" prefWidth="152.0">
-                    <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="361.0" prefWidth="152.0">
-                        <Button fx:id="quanlysach" layoutX="11.0" layoutY="45.0" mnemonicParsing="false" onAction="#quanlysachcontroller" prefHeight="26.0" prefWidth="120.0" text="Quản Lý Sách" />
-                        <Button fx:id="tt_danhsachmuon" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" onAction="#tt_danhsachmuonController" text="danh sách mượn">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="tt_dangxuat" layoutX="16.0" layoutY="321.0" mnemonicParsing="false" onAction="#tt_dangxuatController" prefHeight="26.0" prefWidth="116.0" text="Đăng Xuất" />
-                      <Label alignment="CENTER" layoutX="-3.0" prefHeight="27.0" prefWidth="154.0" text="admin" />
-                    </AnchorPane>
-                </VBox>
-            </VBox>
-        </VBox>
-    </left>
-    <right>
-        <TableView fx:id="Sachlist" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="442.0" prefWidth="785.0" BorderPane.alignment="CENTER">
-            <columns>
-                <TableColumn fx:id="masach" prefWidth="64.79999083280563" text="Mã Sách" />
-                <TableColumn fx:id="theloai" prefWidth="109.60003662109375" text="Thể Loại" />
-                <TableColumn fx:id="tensach" prefWidth="238.40000915527344" text="Tên Sách" />
-                <TableColumn fx:id="tacgia" prefWidth="204.0" text="Tác Giả" />
-                <TableColumn fx:id="soluong" prefWidth="64.7999267578125" text="Số Lượng" />
-                <TableColumn fx:id="tinhtrang" minWidth="0.0" prefWidth="102.4000244140625" text="Tình Trạng" />
-            </columns>
-        </TableView>
-    </right>
+   <center>
+      <AnchorPane prefHeight="360.0" prefWidth="950.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="260.0" prefWidth="950.0">
+               <children>
+                    <TableView fx:id="Sachlist" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="257.0" prefWidth="950.0">
+                        <columns>
+                            <TableColumn fx:id="tt_masach" prefWidth="76.7999809384346" text="Mã Sách" />
+                            <TableColumn fx:id="tt_theloai" prefWidth="116.00000381469727" text="Thể Loại" />
+                            <TableColumn fx:id="tt_tensach" prefWidth="231.1999969482422" text="Tên Sách" />
+                            <TableColumn fx:id="tt_tacgia" prefWidth="196.0" text="Tác Giả" />
+                        <TableColumn fx:id="tt_namxb" prefWidth="80.79998779296875" text="namXB" />
+                            <TableColumn fx:id="tt_soluong" prefWidth="92.00006103515625" text="Số Lượng" />
+                            <TableColumn fx:id="tt_tinhtrang" minWidth="0.0" prefWidth="156.800048828125" text="Tình Trạng" />
+                        </columns>
+                    </TableView>
+               </children>
+            </HBox>
+            <HBox layoutY="260.0" prefHeight="234.0" prefWidth="950.0">
+               <children>
+                  <AnchorPane prefHeight="231.0" prefWidth="950.0">
+                     <children>
+                              <Button fx:id="tt_danhsachmuon" layoutX="790.0" layoutY="50.0" mnemonicParsing="false" onAction="#tt_danhsachmuonController" prefHeight="30.0" prefWidth="129.0" text="danh sách mượn">
+                                  <font>
+                                      <Font size="14.0" />
+                                  </font>
+                              </Button>
+                        <Label layoutX="42.0" layoutY="48.0" text="Mã Sách" />
+                        <Label layoutX="42.0" layoutY="108.0" text="Thể Loại" />
+                        <Label layoutX="42.0" layoutY="164.0" text="Số Lượng" />
+                        <Label layoutX="343.0" layoutY="48.0" text="Tên Sách" />
+                        <Label layoutX="343.0" layoutY="108.0" text="Tên Tác Giả" />
+                        <Label layoutX="343.0" layoutY="164.0" text="Năm Xuất Bản" />
+                        <TextField fx:id="cn_masach" layoutX="42.0" layoutY="73.0" prefHeight="26.0" prefWidth="200.0" promptText="mã sách" />
+                        <TextField fx:id="cn_theloai" layoutX="42.0" layoutY="124.0" prefHeight="26.0" prefWidth="200.0" promptText="thể loại" />
+                        <TextField fx:id="cn_soluong" layoutX="42.0" layoutY="186.0" prefHeight="26.0" prefWidth="67.0" promptText="số lương" />
+                        <TextField fx:id="cn_tensach" layoutX="343.0" layoutY="73.0" prefHeight="26.0" prefWidth="200.0" promptText="tên sách" />
+                        <TextField fx:id="cn_tentacgia" layoutX="343.0" layoutY="124.0" prefHeight="26.0" prefWidth="200.0" promptText="tên tác giả" />
+                        <TextField fx:id="cn_namxuatban" layoutX="343.0" layoutY="186.0" prefHeight="26.0" prefWidth="200.0" promptText="năm xuất bản" />
+                        <Label alignment="CENTER" layoutX="416.0" layoutY="13.0" prefHeight="18.0" prefWidth="118.0" text="CHỨC NĂNG">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="58.0" layoutY="26.0" prefHeight="2.0" prefWidth="338.0" />
+                        <Separator layoutX="558.0" layoutY="29.0" prefHeight="6.0" prefWidth="346.0" />
+                        <Button layoutX="622.0" layoutY="53.0" mnemonicParsing="false" onAction="#themsach" prefHeight="26.0" prefWidth="93.0" text="Thêm Sách" />
+                        <Button layoutX="622.0" layoutY="113.0" mnemonicParsing="false" onAction="#suasach" prefHeight="26.0" prefWidth="94.0" text="Sửa thông tin" />
+                        <Button layoutX="625.0" layoutY="173.0" mnemonicParsing="false" onAction="#xoasach" prefHeight="26.0" prefWidth="89.0" text="Xóa Sách" />
+                        <Separator layoutX="758.0" layoutY="73.0" orientation="VERTICAL" prefHeight="105.0" prefWidth="8.0" />
+                        <Label layoutX="129.0" layoutY="164.0" text="Tình trạng" />
+                        <TextField fx:id="cn_tinhtrang" layoutX="129.0" layoutY="187.0" prefHeight="26.0" prefWidth="110.0" promptText="tình trạng" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
