@@ -52,13 +52,23 @@ public class dangkyController {
             return;
         }
 
-        databaseConnection connect = new databaseConnection();
-        Connection connecdb = connect.getConnection();
-        String kiemtrataikhoan = "SELECT tentaikhoan, tennguoidung, manguoidung FROM nguoidung WHERE tentaikhoan = '" + tentaikhoan + "'";
+        if(!gioitinh.equals("nam") || !gioitinh.equals("nữ") || !gioitinh.equals("ẩn")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            alert.setContentText("giới tính chỉ có thể là nam, nữ or ẩn.");
+            alert.showAndWait();
+            return;
+        }
+
+        Connection connection = databaseConnection.getConnection();
+        String kiemtrataikhoan = "SELECT tentaikhoan, manguoidung FROM nguoidung WHERE tentaikhoan LIKE ? or manguoidung LIKE ?";
 
         try {
-            Statement statement = connecdb.createStatement();
-            ResultSet queryResult = statement.executeQuery(kiemtrataikhoan);
+            PreparedStatement statement = connection.prepareStatement(kiemtrataikhoan);
+            statement.setString(1, tentaikhoan);
+            statement.setString(2, manguoidung);
+            ResultSet queryResult = statement.executeQuery();
             if (queryResult.next()) {
                 if (queryResult.getString(1).equals(tentaikhoan)) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -66,13 +76,7 @@ public class dangkyController {
                     alert.setHeaderText(null);
                     alert.setContentText("Tài khoản đã có người sử dung.");
                     alert.showAndWait();
-                } else if (queryResult.getString(2).equals(tennguoidung)) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle(null);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Tên người dùng đã có người sử dụng.");
-                    alert.showAndWait();
-                } else if (queryResult.getString(3).equals(manguoidung)) {
+                } else if (queryResult.getString(2).equals(manguoidung)) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle(null);
                     alert.setHeaderText(null);
@@ -84,25 +88,29 @@ public class dangkyController {
 
 
                 String themnguoidung = "INSERT INTO nguoidung (tentaikhoan,matkhau,manguoidung,tennguoidung,vaitro,gioitinh,email,diachi) VALUES (?,?,?,?,?,?,?,?)";
-                Connection connection = connect.getConnection();
-                PreparedStatement them = connection.prepareStatement(themnguoidung);
-                them.setString(1, thanhvienmoi.getTaiKhoan());
-                them.setString(2, thanhvienmoi.getMatKhau());
-                them.setString(3, thanhvienmoi.getManguoidung());
-                them.setString(4, thanhvienmoi.getTenNguoiDung());
-                them.setString(5, thanhvienmoi.getVaitro());
-                them.setString(6, thanhvienmoi.getGioiTinh());
-                them.setString(7, thanhvienmoi.getEmail());
-                them.setString(8, thanhvienmoi.getDiaChi());
 
-                int dbthaydoi = them.executeUpdate();
+                try{
+                    PreparedStatement them = connection.prepareStatement(themnguoidung);
+                    them.setString(1, thanhvienmoi.getTaiKhoan());
+                    them.setString(2, thanhvienmoi.getMatKhau());
+                    them.setString(3, thanhvienmoi.getManguoidung());
+                    them.setString(4, thanhvienmoi.getTenNguoiDung());
+                    them.setString(5, thanhvienmoi.getVaitro());
+                    them.setString(6, thanhvienmoi.getGioiTinh());
+                    them.setString(7, thanhvienmoi.getEmail());
+                    them.setString(8, thanhvienmoi.getDiaChi());
 
-                if (dbthaydoi > 0) {
-                    Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-                    infoAlert.setTitle(null);
-                    infoAlert.setHeaderText(null);
-                    infoAlert.setContentText("Đăng ký tài khoản thành công!");
-                    infoAlert.showAndWait();
+                    int dbthaydoi = them.executeUpdate();
+
+                    if (dbthaydoi > 0) {
+                        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+                        infoAlert.setTitle(null);
+                        infoAlert.setHeaderText(null);
+                        infoAlert.setContentText("Đăng ký tài khoản thành công!");
+                        infoAlert.showAndWait();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
             }
         } catch (Exception e) {
