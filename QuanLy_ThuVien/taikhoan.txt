@@ -1,4 +1,0 @@
-admin,1234,admin,admin,nam,admin@gmail.com,vĩnh phúc,0000
-taikhoan,1234,thành viên,nguoidung,nam,dung@gmail.com,vĩnh phúc,18925
-taikhoan2,1234,thành viên,nguoidung2,nu,a@gmail.com,vĩnh tường,2005
-d,d,thành viên,dung,nam,dung@gmail.com,vĩnh phúc,12345678
