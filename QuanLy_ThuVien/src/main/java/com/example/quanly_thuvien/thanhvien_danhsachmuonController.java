@@ -1,34 +1,28 @@
 package com.example.quanly_thuvien;
 
-import database.databaseConnection;
+
 import javafx.beans.property.SimpleStringProperty;
+import javafx.stage.Stage;
 import lop.*;
+import database.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.Connection;
+import java.io.*;
+import java.sql.*;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class thanhvien_danhsachmuonController {
     @FXML
     private Button tv_dsm_dong;
+    @FXML
+    private TextField tv_dsm_giahan;
     @FXML
     private TableView<muon_tra> tv_danhsachmuon;
     @FXML
@@ -89,7 +83,7 @@ public class thanhvien_danhsachmuonController {
         ObservableList<muon_tra> danhsachmuon = FXCollections.observableArrayList();
 
         try (Connection connection = databaseConnection.getConnection()) {
-            String laydulieu = "select mt.maID, mt.manguoidung, s.maSach, s.theLoai, s.tenSach, s.tenTacGia, s.namXuatBan, mt.ngayMuon, mt.ngayTra from muon_tra mt " +
+            String laydulieu = "select mt.maID, mt.manguoidung, mt.maSach, s.theLoai, s.tenSach, s.tenTacGia, s.namXuatBan, mt.ngayMuon, mt.ngayTra from muon_tra mt " +
                     "inner join sach s on mt.masach = s.masach " +
                     "inner join nguoidung n on mt.manguoidung = n.manguoidung " +
                     "where n.tentaikhoan = ?";
@@ -118,6 +112,67 @@ public class thanhvien_danhsachmuonController {
             e.printStackTrace();
         }
     }
+
+    public void giaHanThoiGianTraSach() {
+        String mamuon = tv_dsm_giahan.getText();
+        try (Connection connection = databaseConnection.getConnection()) {
+            // Lấy ngày trả hiện tại từ cơ sở dữ liệu
+            String layNgayTra = "SELECT mt.ngayTra, mt.manguoidung FROM muon_tra mt" +
+                    " INNER JOIN nguoidung n ON mt.manguoidung = n.manguoidung" +
+                    " where maID = ? AND n.tentaikhoan = ?";
+            PreparedStatement layNgayTraStatement = connection.prepareStatement(layNgayTra);
+            layNgayTraStatement.setString(1, mamuon);
+            layNgayTraStatement.setString(2, taikhoan);
+
+            ResultSet resultSet = layNgayTraStatement.executeQuery();
+            if (resultSet.next()) {
+                LocalDate ngayTraHienTai = resultSet.getDate("ngayTra").toLocalDate();
+
+                // Tính toán ngày trả mới sau khi gia hạn
+                LocalDate ngayTraMoi = ngayTraHienTai.plusDays(15);
+
+                // Cập nhật lại ngày trả mới vào cơ sở dữ liệu
+                String giaHanQuery = "UPDATE muon_tra SET ngayTra = ? WHERE maID = ?";
+                PreparedStatement giaHanStatement = connection.prepareStatement(giaHanQuery);
+
+                // Thiết lập giá trị cho các cột
+                giaHanStatement.setDate(1, Date.valueOf(ngayTraMoi)); // Ngày trả mới
+                giaHanStatement.setString(2, mamuon);
+
+                // Thực hiện lệnh UPDATE
+                int rowsUpdated = giaHanStatement.executeUpdate();
+
+                if (rowsUpdated > 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle(null);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Gia hạn thời gian trả sách thành công.");
+                    alert.showAndWait();
+                    initialize();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle(null);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Không thể gia hạn");
+                    alert.showAndWait();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(null);
+                alert.setHeaderText(null);
+                alert.setContentText("Không tìm thấy thông tin mượn sách.");
+                alert.showAndWait();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Có lỗi xảy ra khi gia hạn thời gian trả sách.");
+            alert.showAndWait();
+        }
+    }
+
 
     // Đóng cửa sổ danh sách mượn
     public void tv_thoatdanhsachmuonController() {

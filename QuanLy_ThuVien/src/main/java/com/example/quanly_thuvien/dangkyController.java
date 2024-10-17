@@ -1,18 +1,24 @@
 package com.example.quanly_thuvien;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import database.databaseConnection;
 import lop.*;
 
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
-public class dangkyController {
+public class dangkyController implements Initializable {
     @FXML
     private TextField dangky_mathanhvien;
     @FXML
@@ -30,19 +36,26 @@ public class dangkyController {
     @FXML
     private Button dangky_thoat;
     @FXML
-    private Label dangky_thongbao;
+    public ComboBox<String> dangky_combobox;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> list = FXCollections.observableArrayList("nam", "nữ", "ẩn");
+        dangky_combobox.setItems(list);
+    }
+
     @FXML
     private void dangky_thanhvienController() {
-        // Lấy dữ liệu từ các trường TextField
+
         String tennguoidung = dangky_tennguoidung.getText();
         String tentaikhoan = dangky_tentaikhoa.getText();
         String matkhau = dangky_matkhau.getText();
-        String gioitinh = dangky_gioitinh.getText();
+        String gioitinh = dangky_combobox.getValue();
         String email = dangky_email.getText();
         String diachi = dangky_diachi.getText();
         String manguoidung = dangky_mathanhvien.getText();
         String vaitro = "thành viên";
-        // Kiểm tra dữ liệu đầu vào
+
         if (tentaikhoan.isEmpty() || matkhau.isEmpty() || manguoidung.isEmpty() || gioitinh.isEmpty() || email.isEmpty() || diachi.isEmpty() || tennguoidung.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(null);
@@ -52,7 +65,7 @@ public class dangkyController {
             return;
         }
 
-        if(!gioitinh.equals("nam") || !gioitinh.equals("nữ") || !gioitinh.equals("ẩn")){
+        if(!gioitinh.equals("nam") && !gioitinh.equals("nữ") && !gioitinh.equals("ẩn")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(null);
             alert.setHeaderText(null);
@@ -61,8 +74,19 @@ public class dangkyController {
             return;
         }
 
+        // Kiểm tra định dạng email
+        if (!email.matches("^[\\w._%+-]+@gmail\\.com$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Địa chỉ email không hợp lệ. Vui lòng nhập email theo định dạng @gmail.com.");
+            alert.showAndWait();
+            return;
+        }
+
+
         Connection connection = databaseConnection.getConnection();
-        String kiemtrataikhoan = "SELECT tentaikhoan, manguoidung FROM nguoidung WHERE tentaikhoan LIKE ? or manguoidung LIKE ?";
+        String kiemtrataikhoan = "SELECT tentaikhoan, manguoidung FROM nguoidung WHERE tentaikhoan LIKE ? OR manguoidung LIKE ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(kiemtrataikhoan);

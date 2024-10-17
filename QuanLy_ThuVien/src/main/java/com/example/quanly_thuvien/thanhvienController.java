@@ -267,6 +267,7 @@ public class thanhvienController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Mượn sách thành công.");
                     alert.showAndWait();
+                    initialize(null,null);
                 }
 
 
@@ -325,6 +326,7 @@ public class thanhvienController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Trả thành công!");
                     alert.showAndWait();
+                    initialize(null, null);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle(null);

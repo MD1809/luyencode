@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,12 +18,14 @@
                     <children>
                         <AnchorPane layoutX="7.0" layoutY="4.0" prefHeight="30.0" prefWidth="926.0">
                             <children>
-                                <Label alignment="CENTER" layoutX="360.0" layoutY="6.0" prefHeight="19.0" prefWidth="229.0" text="Dữ liệu danh sách mượn ">
+                                <Label alignment="CENTER" layoutX="70.0" layoutY="4.0" prefHeight="19.0" prefWidth="229.0" text="Dữ liệu danh sách mượn ">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
                                 </Label>
                                 <Button fx:id="tv_dsm_dong" layoutX="848.0" layoutY="2.0" mnemonicParsing="false" onAction="#tv_thoatdanhsachmuonController" prefHeight="7.0" prefWidth="64.0" text="Đóng" />
+                        <Button layoutX="682.0" layoutY="1.0" mnemonicParsing="false" onAction="#giaHanThoiGianTraSach" text="Gia hạn mượn" />
+                        <TextField fx:id="tv_dsm_giahan" layoutX="524.0" layoutY="1.0" promptText="mã mượn" />
                             </children>
                         </AnchorPane>
                     </children>
@@ -33,7 +36,7 @@
     <center>
         <TableView fx:id="tv_danhsachmuon" onSort="#tv_hienthidanhsachmuon" prefHeight="420.0" prefWidth="445.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="tv_dsm_maid" prefWidth="76.79998475313187" text="Mã" />
+                <TableColumn fx:id="tv_dsm_maid" prefWidth="76.79998475313187" text="Mã mượn" />
                 <TableColumn fx:id="tv_dsm_masach" prefWidth="103.20001220703125" text="Mã Sách" />
                 <TableColumn fx:id="tv_dsm_theloai" prefWidth="101.60002136230469" text="Thể Loại" />
                 <TableColumn fx:id="tv_dsm_tensach" prefWidth="214.4000244140625" text="Tên Sách" />

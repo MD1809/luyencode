@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -70,7 +71,6 @@
                 </Label>
                 <TextField fx:id="dangky_matkhau" layoutX="162.0" layoutY="75.0" prefHeight="26.0" prefWidth="228.0" promptText="mật khẩu" />
                 <TextField fx:id="dangky_tennguoidung" layoutX="160.0" layoutY="123.0" prefHeight="26.0" prefWidth="232.0" promptText="tên người dùng" />
-                <TextField fx:id="dangky_gioitinh" layoutX="162.0" layoutY="225.0" prefHeight="26.0" prefWidth="227.0" promptText="giới tính" />
                 <TextField fx:id="dangky_email" layoutX="163.0" layoutY="276.0" prefHeight="26.0" prefWidth="226.0" promptText="email" />
                 <TextField fx:id="dangky_diachi" layoutX="162.0" layoutY="324.0" prefHeight="26.0" prefWidth="228.0" promptText="địa chỉ" />
                 <Label layoutX="44.0" layoutY="174.0" text="Mã Thành Viên">
@@ -78,7 +78,8 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="dangky_mathanhvien" layoutX="160.0" layoutY="171.0" prefHeight="26.0" prefWidth="231.0" promptText="mã thành viên" />
+                <TextField fx:id="dangky_mathanhvien" layoutX="160.0" layoutY="171.0" prefHeight="26.0" prefWidth="228.0" promptText="mã thành viên" />
+            <ComboBox fx:id="dangky_combobox" editable="true" layoutX="163.0" layoutY="225.0" prefHeight="26.0" prefWidth="224.0" promptText="giới tính" />
             </children>
         </AnchorPane>
     </center>

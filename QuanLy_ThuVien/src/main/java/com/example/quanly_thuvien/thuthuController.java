@@ -96,10 +96,15 @@ public class thuthuController implements Initializable {
 
     private ObservableList<Sach> ds_sach;
 
+    @FXML
+    public ComboBox<String> tt_combobox;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<String> list = FXCollections.observableArrayList("Có thể mượn", "Đã có người mượn");
         ds_sach = FXCollections.observableArrayList();
         try {
+            tt_combobox.setItems(list);
             docdulieusach();
         } catch (Exception e) {
             e.printStackTrace();
@@ -213,7 +218,7 @@ public class thuthuController implements Initializable {
         String tensach = cn_tensach.getText();
         String tentacgia = cn_tentacgia.getText();
         String namxuatban = cn_namxuatban.getText();
-        String tinhtrang = cn_tinhtrang.getText();
+        String tinhtrang = tt_combobox.getValue();
 
         if(masach.isEmpty() || theloai.isEmpty() || soluong.isEmpty() || tensach.isEmpty() ||
                 tentacgia.isEmpty() || namxuatban.isEmpty() || tinhtrang.isEmpty()){
@@ -236,7 +241,7 @@ public class thuthuController implements Initializable {
             ResultSet queryResult = statement.executeQuery();
             if(queryResult.next()){
                 if(queryResult.getString(1).equals(tensach) && queryResult.getString(2).equals(theloai)
-                    && queryResult.getString(3).equals(tentacgia) && queryResult.getString(4).equals(namxuatban)){
+                        && queryResult.getString(3).equals(tentacgia) && queryResult.getString(4).equals(namxuatban)){
                     sachdatontai = true;
                 }else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -244,37 +249,11 @@ public class thuthuController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Mã bị trùng.");
                     alert.showAndWait();
+                    return;
                 }
             }
         } catch (Exception e){
             e.printStackTrace();
-        }
-        if (sachdatontai) {
-            try{
-                int soLuong = Integer.parseInt(soluong);
-                String capnhatSoLuong = "UPDATE sach SET soLuongCon = soLuongCon + ? WHERE maSach = ?";
-                try {
-                    PreparedStatement capnhat = connecdb.prepareStatement(capnhatSoLuong);
-                    capnhat.setInt(1, soLuong);
-                    capnhat.setString(2, masach);
-                    capnhat.executeUpdate();
-
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle(null);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Sách đã tồn tại." + "\n"
-                            + "Cập nhật số lượng thành công");
-                    alert.showAndWait();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }catch (NumberFormatException e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle(null);
-                alert.setHeaderText(null);
-                alert.setContentText("Số lượng phải là một số hợp lệ.");
-                alert.showAndWait();
-            }
         }
 
         try{
@@ -297,25 +276,68 @@ public class thuthuController implements Initializable {
             return;
         }
 
-        String themSach = "INSERT INTO sach (maSach, theLoai, tenSach, tenTacGia, namXuatBan, soLuongCon) VALUES (?, ?, ?, ?, ?, ?)";
-        try {
-            PreparedStatement insertStatement = connecdb.prepareStatement(themSach);
-            // Đặt các giá trị cho sách mới
-            insertStatement.setString(1, masach);
-            insertStatement.setString(2, theloai);
-            insertStatement.setString(3, tensach);
-            insertStatement.setString(4, tentacgia);
-            insertStatement.setInt(5, Integer.parseInt(namxuatban));
-            insertStatement.setInt(6, Integer.parseInt(soluong));
-            insertStatement.executeUpdate();
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        try{
+            int intsoluong = Integer.parseInt(soluong);
+            if(intsoluong < 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(null);
+                alert.setHeaderText(null);
+                alert.setContentText("số lượng không thể âm.");
+                alert.showAndWait();
+                return;
+            }
+        }catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(null);
             alert.setHeaderText(null);
-            alert.setContentText("Thêm sách thành công.");
+            alert.setContentText("Số lượng phải là một số hợp lệ.");
             alert.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
+            return;
+        }
+
+        if (sachdatontai) {
+            try {
+                int soLuong = Integer.parseInt(soluong);
+                String capnhatSoLuong = "UPDATE sach SET soLuongCon = soLuongCon + ? WHERE maSach = ?";
+                try {
+                    PreparedStatement capnhat = connecdb.prepareStatement(capnhatSoLuong);
+                    capnhat.setInt(1, soLuong);
+                    capnhat.setString(2, masach);
+                    capnhat.executeUpdate();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle(null);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Sách đã tồn tại." + "\n"
+                            + "Cập nhật số lượng thành công");
+                    alert.showAndWait();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            String themSach = "INSERT INTO sach (maSach, theLoai, tenSach, tenTacGia, namXuatBan, soLuongCon) VALUES (?, ?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement insertStatement = connecdb.prepareStatement(themSach);
+                // Đặt các giá trị cho sách mới
+                insertStatement.setString(1, masach);
+                insertStatement.setString(2, theloai);
+                insertStatement.setString(3, tensach);
+                insertStatement.setString(4, tentacgia);
+                insertStatement.setInt(5, Integer.parseInt(namxuatban));
+                insertStatement.setInt(6, Integer.parseInt(soluong));
+                insertStatement.executeUpdate();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(null);
+                alert.setHeaderText(null);
+                alert.setContentText("Thêm sách thành công.");
+                alert.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -326,7 +348,7 @@ public class thuthuController implements Initializable {
         String tensach = cn_tensach.getText();
         String tentacgia = cn_tentacgia.getText();
         String namxuatban = cn_namxuatban.getText();
-        String tinhtrang = cn_tinhtrang.getText();
+        String tinhtrang = tt_combobox.getValue();
 
         if(masach.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -457,10 +479,10 @@ public class thuthuController implements Initializable {
             return;
         }
 
-        String kiemtra = "SELECT COUNT(*) FROM muon_tra WHERE maSach = ?";
+        String kiemtra = "SELECT COUNT(*) AS soluongnguoimuon FROM muon_tra WHERE maSach = ?";
         try {
             PreparedStatement Statement = connecdb.prepareStatement(kiemtra);
-            Statement.setString(1, masach); // masach là mã sách bạn muốn xóa
+            Statement.setString(1, masach);
             ResultSet resultSet = Statement.executeQuery();
             if (resultSet.next() && resultSet.getInt(1) > 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
