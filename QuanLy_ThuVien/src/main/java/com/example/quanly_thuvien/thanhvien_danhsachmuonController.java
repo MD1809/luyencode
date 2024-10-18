@@ -22,7 +22,7 @@ public class thanhvien_danhsachmuonController {
     @FXML
     private Button tv_dsm_dong;
     @FXML
-    private TextField tv_dsm_giahan;
+    private TextField tv_dsm_mamuon;
     @FXML
     private TableView<muon_tra> tv_danhsachmuon;
     @FXML
@@ -114,7 +114,7 @@ public class thanhvien_danhsachmuonController {
     }
 
     public void giaHanThoiGianTraSach() {
-        String mamuon = tv_dsm_giahan.getText();
+        String mamuon = tv_dsm_mamuon.getText();
         try (Connection connection = databaseConnection.getConnection()) {
             // Lấy ngày trả hiện tại từ cơ sở dữ liệu
             String layNgayTra = "SELECT mt.ngayTra, mt.manguoidung FROM muon_tra mt" +
@@ -171,6 +171,70 @@ public class thanhvien_danhsachmuonController {
             alert.setContentText("Có lỗi xảy ra khi gia hạn thời gian trả sách.");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    public void trasach(){
+
+        String tra =  tv_dsm_mamuon.getText();
+
+        if (tra.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Mã mượn không được để trống");
+            alert.showAndWait();
+            return;
+        }
+
+        boolean thongtintra = false;
+        try (Connection connection = databaseConnection.getConnection()) {
+            String kiemtramaso = "SELECT * FROM muon_tra WHERE maID LIKE ? and manguoidung = (select manguoidung from nguoidung where tentaikhoan LIKE ?);";
+            PreparedStatement statement = connection.prepareStatement(kiemtramaso);
+            statement.setString(1, tra);
+            statement.setString(2, taikhoan);
+            ResultSet queryResult = statement.executeQuery();
+
+            if (queryResult.next()) {
+                thongtintra = true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(thongtintra){
+            try (Connection connection = databaseConnection.getConnection()) {
+                String kiemtramaso = "DELETE FROM muon_tra WHERE maID = ?";
+                PreparedStatement statement = connection.prepareStatement(kiemtramaso);
+                statement.setString(1, tra);
+                int rowsDeleted = statement.executeUpdate(); // Thực hiện xóa
+
+                if (rowsDeleted > 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle(null);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Trả thành công!");
+                    alert.showAndWait();
+                    initialize();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle(null);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Không thể trả.");
+                    alert.showAndWait();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Không có dữ liệu");
+            alert.showAndWait();
+        }
+
     }
 
 

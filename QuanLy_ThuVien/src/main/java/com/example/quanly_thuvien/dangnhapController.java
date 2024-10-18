@@ -54,6 +54,7 @@ public class dangnhapController {
                     Stage stage = (Stage) dangnhap.getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
+                    controller.hienthithongtin();
                     stage.show();
                 }
             }else {

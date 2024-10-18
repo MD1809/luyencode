@@ -34,7 +34,9 @@ public class thanhvienController implements Initializable {
     @FXML
     private TextField tv_masachText;
     @FXML
-    private TextField IDtraText;
+    private Label tennguoidung;
+    @FXML
+    private Label manguoidung;
     @FXML
     private TableView<Sach> Sachlist;
     @FXML
@@ -72,6 +74,7 @@ public class thanhvienController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         masach.setCellValueFactory(new PropertyValueFactory<>("maSach"));
         theloai.setCellValueFactory(new PropertyValueFactory<>("theLoai"));
         tensach.setCellValueFactory(new PropertyValueFactory<>("tenSach"));
@@ -79,6 +82,24 @@ public class thanhvienController implements Initializable {
         tinhtrang.setCellValueFactory(new PropertyValueFactory<>("tinhTrang"));
 
         Sachlist.setItems(ds_sach);
+    }
+
+    public void hienthithongtin(){
+        databaseConnection connect = new databaseConnection();
+        Connection connecdb = connect.getConnection();
+        String thongtin = "select tennguoidung, manguoidung from nguoidung where tentaikhoan LIKE ? ";
+        try{
+            PreparedStatement statement = connecdb.prepareStatement(thongtin);
+            statement.setString(1, taikhoandn);
+            ResultSet queryResult = statement.executeQuery();
+            if(queryResult.next()){
+                tennguoidung.setText(queryResult.getString(1));
+                manguoidung.setText("Mã số: " + queryResult.getString(2));
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+
+        }
     }
 
     public void danhsachsach() throws IOException{
@@ -164,7 +185,6 @@ public class thanhvienController implements Initializable {
             }
         } catch(Exception e){
             e.printStackTrace();
-
         }
         return cosach;
     }
@@ -192,6 +212,7 @@ public class thanhvienController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Điền đầy đủ thông tin.");
             alert.showAndWait();
+            return;
         }else if(!tontaisach){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(null);
@@ -282,70 +303,6 @@ public class thanhvienController implements Initializable {
                     + "Mượn sách không thành công");
             alert.showAndWait();
         }
-    }
-
-    @FXML
-    public void trasach(){
-
-        String IDtra =  IDtraText.getText();
-
-        if (IDtra.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle(null);
-            alert.setHeaderText(null);
-            alert.setContentText("IDtra không được để trống");
-            alert.showAndWait();
-            return;
-        }
-
-        boolean thongtintra = false;
-        try (Connection connection = databaseConnection.getConnection()) {
-            String kiemtramaso = "SELECT * FROM muon_tra WHERE maID LIKE ? and manguoidung = (select manguoidung from nguoidung where tentaikhoan LIKE ?);";
-            PreparedStatement statement = connection.prepareStatement(kiemtramaso);
-            statement.setString(1, IDtra);
-            statement.setString(2, taikhoandn);
-            ResultSet queryResult = statement.executeQuery();
-
-            if (queryResult.next()) {
-                thongtintra = true;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(thongtintra){
-            try (Connection connection = databaseConnection.getConnection()) {
-                String kiemtramaso = "DELETE FROM muon_tra WHERE maID = ?";
-                PreparedStatement statement = connection.prepareStatement(kiemtramaso);
-                statement.setString(1, IDtra);
-                int rowsDeleted = statement.executeUpdate(); // Thực hiện xóa
-
-                if (rowsDeleted > 0) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle(null);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Trả thành công!");
-                    alert.showAndWait();
-                    initialize(null, null);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle(null);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Không thể trả.");
-                    alert.showAndWait();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle(null);
-            alert.setHeaderText(null);
-            alert.setContentText("Không có dữ liệu");
-            alert.showAndWait();
-        }
-
     }
 
     @FXML
