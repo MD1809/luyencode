@@ -128,13 +128,19 @@
                 <Button fx:id="tv_danhsachmuonController" layoutX="9.0" layoutY="202.0" mnemonicParsing="false" onAction="#tv_danhsachmuonController" text="danh sách mượn" />
                 <Button fx:id="tv_dangxuat" layoutX="7.0" layoutY="428.0" mnemonicParsing="false" onAction="#tv_dangxuatController" prefHeight="26.0" prefWidth="107.0" text="Đăng Xuất" />
                 <Separator layoutX="4.0" layoutY="169.0" prefHeight="7.0" prefWidth="113.0" />
-                <AnchorPane prefHeight="139.0" prefWidth="123.0">
+                <AnchorPane prefHeight="169.0" prefWidth="123.0">
                     <children>
                         <ImageView fitHeight="82.0" fitWidth="87.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../file/avatar.jpg" />
                             </image>
                         </ImageView>
+                  <Label fx:id="tv_ten" alignment="CENTER" layoutY="106.0" prefHeight="18.0" prefWidth="122.0" />
+                  <Label fx:id="tv_maso" alignment="CENTER" layoutX="1.0" layoutY="124.0" prefHeight="18.0" prefWidth="120.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </children>

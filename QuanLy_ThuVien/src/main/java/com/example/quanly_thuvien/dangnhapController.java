@@ -21,8 +21,7 @@ public class dangnhapController {
     private PasswordField tenmatkhau;
     @FXML
     private Button thoatcontrol;
-    @FXML
-    private Label welcomeText;
+
     private boolean kiemtra(String taikhoan, String matkhau, String vaitro) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader("taikhoan.txt"))) {
             String line;

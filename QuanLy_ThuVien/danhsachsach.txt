@@ -20,4 +20,4 @@ S019,Văn học,Biên niên ký chim vặn dây cót,Haruki Murakami,2,Còn sác
 S020,Lịch sử,Cuộc chiến Việt Nam,Neil Sheehan,0,Hết sách
 S021,app,test app,md,0,Hết sách
 S022,a,a,a,85,có thể mượn
-S023,b,b,b,79,có thể mượn
+S023,v,v,v,1,có thể mượn

@@ -20,6 +20,10 @@ public class thanhvienController implements Initializable {
 
     @FXML
     private Label tv_thongbao;
+
+    @FXML
+    private Label tv_test;
+
     @FXML
     private TextField timkiemtensach;
     @FXML
