@@ -97,7 +97,7 @@ public class thuthuController implements Initializable {
     private ObservableList<Sach> ds_sach;
 
     @FXML
-    public ComboBox<String> tt_combobox;
+    private ComboBox<String> tt_combobox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -118,6 +118,7 @@ public class thuthuController implements Initializable {
         tt_soluong.setCellValueFactory(new PropertyValueFactory<>("soLuongCon"));
         tt_tinhtrang.setCellValueFactory(new PropertyValueFactory<>("tinhTrang"));
         Sachlist.setItems(ds_sach);
+        xulinhanh();
     }
 
     public void docdulieusach() {
@@ -185,6 +186,7 @@ public class thuthuController implements Initializable {
         }
     }
 
+    @FXML
     public void tt_danhsachmuonController() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("thuthu_danhsachmuon.fxml"));
         Parent root = loader.load();
@@ -194,6 +196,7 @@ public class thuthuController implements Initializable {
         stage2.show();
     }
 
+    @FXML
     public void tt_dangxuatController() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(null);
@@ -209,8 +212,24 @@ public class thuthuController implements Initializable {
             stage.show();
         }
     }
+    @FXML
+    public void xulinhanh(){
 
-    // cn
+        Sachlist.setOnMouseClicked(event -> {
+            Sach thongtin = Sachlist.getSelectionModel().getSelectedItem();
+            if (thongtin != null) {
+                cn_masach.setText(thongtin.getMaSach());
+                cn_tensach.setText(thongtin.getTenSach());
+                cn_tentacgia.setText(thongtin.getTenTacGia());
+                cn_theloai.setText(thongtin.getTheLoai());
+                cn_soluong.setText(String.valueOf(thongtin.getSoLuongCon()));
+                cn_namxuatban.setText(String.valueOf(thongtin.getNamXuatBan()));
+                tt_combobox.setValue(thongtin.getTinhTrang());
+            }
+        });
+    }
+
+    @FXML
     public void themsach(){
         String masach = cn_masach.getText();
         String theloai = cn_theloai.getText();
@@ -341,6 +360,7 @@ public class thuthuController implements Initializable {
         }
     }
 
+    @FXML
     public void suasach(){
         String masach = cn_masach.getText();
         String theloai = cn_theloai.getText();
@@ -452,6 +472,7 @@ public class thuthuController implements Initializable {
         }
     }
 
+    @FXML
     public void xoasach(){
         String masach = cn_masach.getText();
 

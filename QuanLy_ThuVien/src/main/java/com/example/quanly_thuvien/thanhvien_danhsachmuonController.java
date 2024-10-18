@@ -238,7 +238,7 @@ public class thanhvien_danhsachmuonController {
     }
 
 
-    // Đóng cửa sổ danh sách mượn
+    @FXML
     public void tv_thoatdanhsachmuonController() {
         Stage stagethoat = (Stage) tv_dsm_dong.getScene().getWindow();
         stagethoat.close();

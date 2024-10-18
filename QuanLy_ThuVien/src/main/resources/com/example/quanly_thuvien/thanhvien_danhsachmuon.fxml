@@ -20,12 +20,13 @@
                     <children>
                         <AnchorPane layoutX="7.0" layoutY="4.0" prefHeight="30.0" prefWidth="1008.0">
                             <children>
-                                <Label alignment="CENTER" layoutX="318.0" layoutY="4.0" prefHeight="19.0" prefWidth="229.0" text="Dữ liệu danh sách mượn ">
+                                <Label alignment="CENTER" layoutX="318.0" layoutY="4.0" prefHeight="19.0" prefWidth="229.0" text="Dữ liệu danh sách mượn " textFill="#2ab41e">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="17.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="tv_dsm_dong" layoutX="914.0" layoutY="1.0" mnemonicParsing="false" onAction="#tv_thoatdanhsachmuonController" prefHeight="7.0" prefWidth="64.0" text="Đóng" />
+                        <Separator layoutX="84.0" layoutY="14.0" prefHeight="0.0" prefWidth="203.0" style="-fx-background-color: #2ab41e;" />
+                        <Separator layoutX="548.0" layoutY="15.0" prefHeight="0.0" prefWidth="203.0" style="-fx-background-color: #2ab41e;" />
                             </children>
                         </AnchorPane>
                     </children>
@@ -52,21 +53,24 @@
       </AnchorPane>
    </center>
    <right>
-      <AnchorPane prefHeight="468.0" prefWidth="216.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="460.0" prefWidth="216.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="tv_dsm_mamuon" layoutX="10.0" layoutY="147.0" prefHeight="26.0" prefWidth="196.0" promptText="mã mượn" />
-            <Button layoutX="16.0" layoutY="221.0" mnemonicParsing="false" onAction="#giaHanThoiGianTraSach" prefHeight="26.0" prefWidth="183.0" text="Gia hạn mượn">
+            <Button layoutX="16.0" layoutY="221.0" mnemonicParsing="false" onAction="#giaHanThoiGianTraSach" prefHeight="26.0" prefWidth="183.0" text="Gia hạn mượn" textFill="#2ab41e">
                <tooltip>
                   <Tooltip text="gia hạn thêm 15 ngày" />
                </tooltip>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Button>
             <Separator layoutX="-3.0" layoutY="-38.0" orientation="VERTICAL" prefHeight="37.0" prefWidth="9.0" />
-            <Label layoutX="63.0" layoutY="35.0" text="CHỨC NĂNG">
+            <Label layoutX="63.0" layoutY="35.0" text="CHỨC NĂNG" textFill="#2ab41e">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="37.0" layoutY="69.0" text="GIA HẠN VÀ TRẢ SÁCH">
+            <Label layoutX="37.0" layoutY="69.0" text="GIA HẠN VÀ TRẢ SÁCH" textFill="#2ab41e">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -79,8 +83,16 @@
             </Label>
             <Separator layoutX="10.0" layoutY="269.0" prefHeight="9.0" prefWidth="78.0" />
             <Separator layoutX="127.0" layoutY="269.0" prefHeight="9.0" prefWidth="78.0" />
-            <Button layoutX="17.0" layoutY="305.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="182.0" text="Trả Sách" />
+            <Button layoutX="23.0" layoutY="306.0" mnemonicParsing="false" onAction="#trasach" prefHeight="26.0" prefWidth="182.0" text="Trả Sách" textFill="#2ab41e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             <Separator layoutX="8.0" prefWidth="200.0" />
+            <Button fx:id="tv_dsm_dong" layoutX="144.0" layoutY="427.0" mnemonicParsing="false" onAction="#tv_thoatdanhsachmuonController" text="Đóng" textFill="#3abc16">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </right>

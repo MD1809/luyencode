@@ -11,7 +11,7 @@ public class Appthuvien extends Application {
     public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Appthuvien.class.getResource("dangnhap.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Scene scene = new Scene(fxmlLoader.load(), 678, 420);
             stage.setTitle(null);
             stage.setScene(scene);
             stage.show();

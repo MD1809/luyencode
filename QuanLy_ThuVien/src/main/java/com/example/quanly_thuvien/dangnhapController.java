@@ -70,7 +70,7 @@ public class dangnhapController {
     }
 
     @FXML
-    void thoatcontrolaction() {
+    void thoatcontroller() {
         Stage stage = (Stage) thoatcontrol.getScene().getWindow();
         stage.close();
     }

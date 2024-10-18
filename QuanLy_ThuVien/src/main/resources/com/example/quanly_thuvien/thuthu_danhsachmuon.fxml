@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,12 +18,17 @@
                     <children>
                         <AnchorPane layoutX="7.0" layoutY="4.0" prefHeight="30.0" prefWidth="988.0">
                             <children>
-                                <Label alignment="CENTER" layoutX="379.0" layoutY="6.0" prefHeight="19.0" prefWidth="229.0" text="Dữ liệu danh sách mượn ">
+                                <Label alignment="CENTER" layoutX="322.0" layoutY="1.0" prefHeight="19.0" prefWidth="229.0" text="Dữ liệu danh sách mượn " textFill="#2ab41e">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="tt_dsm_dong" layoutX="884.0" layoutY="2.0" mnemonicParsing="false" onAction="#tt_thoatdanhsachmuonController" prefHeight="7.0" prefWidth="64.0" text="Đóng" />
+                                <Button fx:id="tt_dsm_dong" layoutX="884.0" layoutY="2.0" mnemonicParsing="false" onAction="#tt_thoatdanhsachmuonController" prefHeight="7.0" prefWidth="64.0" text="Đóng" textFill="#2ab41e">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <Separator layoutX="45.0" layoutY="13.0" prefHeight="4.0" prefWidth="247.0" style="-fx-background-color: #2ab41e;" />
+                        <Separator layoutX="566.0" layoutY="13.0" prefHeight="4.0" prefWidth="247.0" style="-fx-background-color: #2ab41e;" />
                             </children>
                         </AnchorPane>
                     </children>

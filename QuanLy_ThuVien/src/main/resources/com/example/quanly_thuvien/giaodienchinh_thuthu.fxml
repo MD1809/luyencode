@@ -16,9 +16,9 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanly_thuvien.thuthuController">
     <top>
         <HBox prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <Label alignment="CENTER" prefHeight="38.0" prefWidth="227.0" style="-fx-background-color: #FF6600;" text="library">
+            <Label alignment="CENTER" prefHeight="38.0" prefWidth="227.0" style="-fx-background-color: #2ab41e;" text="library">
                 <font>
-                    <Font name="System Bold Italic" size="19.0" />
+                    <Font name="System Bold Italic" size="26.0" />
                 </font>
             </Label>
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS">
@@ -31,12 +31,18 @@
             </Separator>
             <AnchorPane prefHeight="38.0" prefWidth="733.0">
                 <children>
-                    <Button fx:id="timkiemsach" layoutX="382.0" layoutY="5.0" mnemonicParsing="false" onAction="#timKiemSach" prefHeight="27.0" prefWidth="73.0" text="tìm kiếm" />
-                    <TextField fx:id="timkiemtensach" layoutX="168.0" layoutY="5.0" prefHeight="26.0" prefWidth="214.0" promptText="nhập tên sách" />
-                    <Button fx:id="lammoi" layoutX="483.0" layoutY="5.0" mnemonicParsing="false" onAction="#capnhatlaidulieu" text="làm mới" />
-                     <Button fx:id="tt_dangxuat" layoutX="646.0" layoutY="6.0" mnemonicParsing="false" onAction="#tt_dangxuatController" prefHeight="26.0" prefWidth="74.0" text="Đăng Xuất">
+                    <Button fx:id="timkiemsach" layoutX="382.0" layoutY="5.0" mnemonicParsing="false" onAction="#timKiemSach" prefHeight="27.0" prefWidth="73.0" text="tìm kiếm" textFill="#2ab41e">
                   <font>
-                     <Font size="11.0" />
+                     <Font name="System Bold" size="12.0" />
+                  </font></Button>
+                    <TextField fx:id="timkiemtensach" layoutX="168.0" layoutY="5.0" prefHeight="26.0" prefWidth="214.0" promptText="nhập tên sách" />
+                    <Button fx:id="lammoi" layoutX="489.0" layoutY="6.0" mnemonicParsing="false" onAction="#capnhatlaidulieu" text="làm mới" textFill="#2ab41e">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font></Button>
+                     <Button fx:id="tt_dangxuat" layoutX="646.0" layoutY="6.0" mnemonicParsing="false" onAction="#tt_dangxuatController" prefHeight="26.0" prefWidth="74.0" text="Đăng Xuất" textFill="#2ab41e">
+                  <font>
+                     <Font name="System Bold" size="11.0" />
                   </font>
                </Button>
                <Separator layoutX="615.0" layoutY="2.0" orientation="VERTICAL" prefHeight="34.0" prefWidth="11.0" />
@@ -49,7 +55,7 @@
          <children>
             <HBox prefHeight="260.0" prefWidth="950.0">
                <children>
-                    <TableView fx:id="Sachlist" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="257.0" prefWidth="950.0">
+                    <TableView fx:id="Sachlist" maxHeight="-Infinity" maxWidth="-Infinity" onSort="#xulinhanh" prefHeight="257.0" prefWidth="950.0">
                         <columns>
                             <TableColumn fx:id="tt_masach" prefWidth="76.7999809384346" text="Mã Sách" />
                             <TableColumn fx:id="tt_theloai" prefWidth="116.00000381469727" text="Thể Loại" />
@@ -66,9 +72,9 @@
                <children>
                   <AnchorPane prefHeight="231.0" prefWidth="950.0">
                      <children>
-                              <Button fx:id="tt_danhsachmuon" layoutX="790.0" layoutY="50.0" mnemonicParsing="false" onAction="#tt_danhsachmuonController" prefHeight="30.0" prefWidth="129.0" text="danh sách mượn">
+                              <Button fx:id="tt_danhsachmuon" layoutX="790.0" layoutY="50.0" mnemonicParsing="false" onAction="#tt_danhsachmuonController" prefHeight="30.0" prefWidth="129.0" text="danh sách mượn" textFill="#2ab41e">
                                   <font>
-                                      <Font size="14.0" />
+                                      <Font name="System Bold" size="14.0" />
                                   </font>
                               </Button>
                         <Label layoutX="42.0" layoutY="48.0" text="Mã Sách" />
@@ -83,16 +89,25 @@
                         <TextField fx:id="cn_tensach" layoutX="343.0" layoutY="73.0" prefHeight="26.0" prefWidth="200.0" promptText="tên sách" />
                         <TextField fx:id="cn_tentacgia" layoutX="343.0" layoutY="124.0" prefHeight="26.0" prefWidth="200.0" promptText="tên tác giả" />
                         <TextField fx:id="cn_namxuatban" layoutX="343.0" layoutY="186.0" prefHeight="26.0" prefWidth="200.0" promptText="năm xuất bản" />
-                        <Label alignment="CENTER" layoutX="416.0" layoutY="13.0" prefHeight="18.0" prefWidth="118.0" text="CHỨC NĂNG">
+                        <Label alignment="CENTER" layoutX="416.0" layoutY="13.0" prefHeight="18.0" prefWidth="118.0" text="CHỨC NĂNG" textFill="#2ab41e">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
                         </Label>
                         <Separator layoutX="58.0" layoutY="26.0" prefHeight="2.0" prefWidth="338.0" />
                         <Separator layoutX="558.0" layoutY="29.0" prefHeight="6.0" prefWidth="346.0" />
-                        <Button layoutX="622.0" layoutY="53.0" mnemonicParsing="false" onAction="#themsach" prefHeight="26.0" prefWidth="93.0" text="Thêm Sách" />
-                        <Button layoutX="622.0" layoutY="113.0" mnemonicParsing="false" onAction="#suasach" prefHeight="26.0" prefWidth="94.0" text="Sửa thông tin" />
-                        <Button layoutX="625.0" layoutY="173.0" mnemonicParsing="false" onAction="#xoasach" prefHeight="26.0" prefWidth="89.0" text="Xóa Sách" />
+                        <Button layoutX="622.0" layoutY="53.0" mnemonicParsing="false" onAction="#themsach" prefHeight="26.0" prefWidth="94.0" text="Thêm Sách" textFill="#2ab41e">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <Button layoutX="622.0" layoutY="113.0" mnemonicParsing="false" onAction="#suasach" prefHeight="26.0" prefWidth="94.0" text="Sửa thông tin" textFill="#2ab41e">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <Button layoutX="625.0" layoutY="173.0" mnemonicParsing="false" onAction="#xoasach" prefHeight="26.0" prefWidth="89.0" text="Xóa Sách" textFill="#2ab41e">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                         <Separator layoutX="758.0" layoutY="73.0" orientation="VERTICAL" prefHeight="105.0" prefWidth="8.0" />
                         <Label layoutX="115.0" layoutY="164.0" text="Tình trạng" />
                         <ComboBox fx:id="tt_combobox" editable="true" layoutX="115.0" layoutY="186.0" prefHeight="26.0" prefWidth="129.0" promptText="tình trạng" />

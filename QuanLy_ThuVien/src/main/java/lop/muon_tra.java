@@ -2,7 +2,7 @@ package lop;
 
 import java.time.LocalDate;
 
-public class muon_tra {
+public class muon_tra{
     private int maid;
     private String manguoidung;
     private String masach;
