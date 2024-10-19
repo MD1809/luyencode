@@ -543,6 +543,16 @@ public class thuthuController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void doimatkhau() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("doimatkhau.fxml"));
+        Parent root = loader.load();
+        Stage thaydoimatkhau = new Stage();
+        Scene scene = new Scene(root);
+        thaydoimatkhau.setScene(scene);
+        thaydoimatkhau.show();
+    }
 }
 
 

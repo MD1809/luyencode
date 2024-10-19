@@ -111,6 +111,11 @@
                         <Separator layoutX="758.0" layoutY="73.0" orientation="VERTICAL" prefHeight="105.0" prefWidth="8.0" />
                         <Label layoutX="115.0" layoutY="164.0" text="Tình trạng" />
                         <ComboBox fx:id="tt_combobox" editable="true" layoutX="115.0" layoutY="186.0" prefHeight="26.0" prefWidth="129.0" promptText="tình trạng" />
+                        <Button layoutX="790.0" layoutY="112.0" mnemonicParsing="false" onAction="#doimatkhau" prefHeight="26.0" prefWidth="129.0" text="Đổi mật khẩu" textFill="#2ab41e">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>

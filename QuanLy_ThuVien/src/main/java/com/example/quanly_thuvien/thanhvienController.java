@@ -82,6 +82,7 @@ public class thanhvienController implements Initializable {
         tinhtrang.setCellValueFactory(new PropertyValueFactory<>("tinhTrang"));
 
         Sachlist.setItems(ds_sach);
+        xulinhanhmuonsach();
     }
 
     public void hienthithongtin(){
@@ -165,6 +166,17 @@ public class thanhvienController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void xulinhanhmuonsach(){
+
+        Sachlist.setOnMouseClicked(event -> {
+            Sach thongtin = Sachlist.getSelectionModel().getSelectedItem();
+            if (thongtin != null) {
+                tv_masachText.setText(thongtin.getMaSach());
+            }
+        });
     }
 
     public boolean sachcon(String ma){
@@ -316,6 +328,18 @@ public class thanhvienController implements Initializable {
         tv_stage.setScene(scene);
         tv_stage.show();
         controller.tv_hienthidanhsachmuon();
+    }
+
+    @FXML
+    public void doimatkhau() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("doimatkhau.fxml"));
+        Parent root = loader.load();
+        doimatkhauController dmk = loader.getController();
+        dmk.taikhoanmatkhau(taikhoandn, matkhaudn);
+        Stage thaydoimatkhau = new Stage();
+        Scene scene = new Scene(root);
+        thaydoimatkhau.setScene(scene);
+        thaydoimatkhau.show();
     }
 
     public void tv_dangxuatController() throws IOException{

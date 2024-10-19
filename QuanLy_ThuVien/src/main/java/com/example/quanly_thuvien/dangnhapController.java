@@ -84,4 +84,5 @@ public class dangnhapController {
         dangkytaikhoan.setScene(scene);
         dangkytaikhoan.show();
     }
+
 }

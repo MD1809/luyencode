@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="678.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanly_thuvien.dangnhapController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -25,38 +24,29 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label layoutX="210.0" layoutY="134.0" prefHeight="29.0" prefWidth="295.0" style="-fx-background-color: #efefef;" text="Tài khoản:">
+            <TextField fx:id="tentaikhoan" layoutX="234.0" layoutY="136.0" prefHeight="34.0" prefWidth="230.0" promptText="Tài Khoản">
                <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="211.0" layoutY="197.0" prefHeight="27.0" prefWidth="294.0" style="-fx-background-color: #efefef;" text="Mật Khẩu:" textFill="#140000">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tentaikhoan" layoutX="312.0" layoutY="134.0" prefHeight="30.0" prefWidth="194.0" promptText="tên đăng nhập" />
-            <Button fx:id="dangnhap" layoutX="330.0" layoutY="259.0" mnemonicParsing="false" onAction="#dangnhapControl" prefHeight="30.0" prefWidth="157.0" text="Đăng nhập" textFill="#40c913">
+                  <Font size="15.0" />
+               </font></TextField>
+            <Button fx:id="dangnhap" layoutX="340.0" layoutY="250.0" mnemonicParsing="false" onAction="#dangnhapControl" prefHeight="30.0" prefWidth="157.0" text="Đăng nhập" textFill="#40c913">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="327.0" layoutY="339.0" mnemonicParsing="false" onAction="#dangkytaikhoanController" prefHeight="30.0" prefWidth="162.0" text="Đăng ký" textFill="#2dc91f">
+            <Button layoutX="337.0" layoutY="308.0" mnemonicParsing="false" onAction="#dangkytaikhoanController" prefHeight="30.0" prefWidth="162.0" text="Đăng ký" textFill="#2dc91f">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="thoatcontrol" layoutX="590.0" layoutY="339.0" mnemonicParsing="false" onAction="#thoatcontroller" text="Thoát" textFill="#2bb41f">
+            <Button fx:id="thoatcontrol" layoutX="580.0" layoutY="365.0" mnemonicParsing="false" onAction="#thoatcontroller" text="Thoát" textFill="#2bb41f">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <PasswordField fx:id="tenmatkhau" layoutX="313.0" layoutY="197.0" prefHeight="27.0" prefWidth="192.0" promptText="mật khẩu" />
-            <Label layoutX="399.0" layoutY="306.0" text="OR" textFill="#278405">
+            <PasswordField fx:id="tenmatkhau" layoutX="234.0" layoutY="195.0" prefHeight="33.0" prefWidth="230.0" promptText="mật khẩu">
                <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
+                  <Font size="15.0" />
+               </font></PasswordField>
          </children>
       </AnchorPane>
    </center>

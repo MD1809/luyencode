@@ -31,7 +31,7 @@
                     <Insets bottom="5.0" top="5.0" />
                 </HBox.margin>
             </Separator>
-            <AnchorPane prefHeight="38.0" prefWidth="727.0">
+            <AnchorPane prefHeight="54.0" prefWidth="726.0">
                 <children>
                     <Button fx:id="timkiemsach" layoutX="256.0" layoutY="6.0" mnemonicParsing="false" onAction="#timKiemSach" prefHeight="26.0" prefWidth="84.0" text="tìm kiếm" textFill="#2dbc2d" />
                     <TextField fx:id="timkiemtensach" layoutX="77.0" layoutY="6.0" prefHeight="26.0" prefWidth="178.0" promptText="nhập tên sách" />
@@ -42,14 +42,14 @@
                      <Image url="@../../../file/avatar.jpg" />
                   </image>
                </ImageView>
-               <Label fx:id="tennguoidung" alignment="CENTER_RIGHT" layoutX="593.0" layoutY="8.0" prefHeight="18.0" prefWidth="78.0" textAlignment="CENTER" />
-               <Label fx:id="manguoidung" alignment="CENTER_RIGHT" layoutX="531.0" layoutY="18.0" prefHeight="18.0" prefWidth="132.0" textAlignment="CENTER" />
+               <Label fx:id="tennguoidung" alignment="CENTER_RIGHT" layoutX="597.0" layoutY="8.0" prefHeight="18.0" prefWidth="78.0" textAlignment="CENTER" />
+               <Label fx:id="manguoidung" alignment="CENTER_RIGHT" layoutX="543.0" layoutY="25.0" prefHeight="18.0" prefWidth="132.0" textAlignment="CENTER" />
                 </children>
             </AnchorPane>
         </HBox>
     </top>
     <center>
-        <TableView fx:id="Sachlist" prefHeight="541.0" prefWidth="579.0" BorderPane.alignment="CENTER">
+        <TableView fx:id="Sachlist" onSort="#xulinhanhmuonsach" prefHeight="473.0" prefWidth="702.0" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="masach" prefWidth="68.79998624324799" text="Mã Sách" />
                 <TableColumn fx:id="theloai" prefWidth="92.80001068115234" text="Thể Loại" />
@@ -86,7 +86,7 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                      <Button fx:id="tv_danhsachmuonController" layoutX="11.0" layoutY="362.0" mnemonicParsing="false" onAction="#tv_danhsachmuonController" prefHeight="26.0" prefWidth="208.0" text="danh sách mượn" textFill="#30c730">
+                      <Button fx:id="tv_danhsachmuonController" layoutX="13.0" layoutY="322.0" mnemonicParsing="false" onAction="#tv_danhsachmuonController" prefHeight="26.0" prefWidth="208.0" text="danh sách mượn" textFill="#30c730">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -104,7 +104,12 @@
                      </font>
                   </Label>
                   <Separator layoutX="16.0" layoutY="298.0" prefHeight="0.0" prefWidth="202.0" />
-                  <Separator layoutX="15.0" prefWidth="200.0" />
+                  <Separator layoutX="17.0" layoutY="12.0" prefWidth="200.0" />
+                  <Button layoutX="14.0" layoutY="373.0" mnemonicParsing="false" onAction="#doimatkhau" prefHeight="26.0" prefWidth="208.0" text="Đổi mật khẩu" textFill="#30c730">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                     </children>
                 </AnchorPane>
             </children>

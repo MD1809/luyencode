@@ -55,7 +55,6 @@ public class thuthu_danhsachmuonController {
     @FXML
     private TableView<muon_tra> tt_danhsachmuon;
 
-    private ObservableList<muon_tra> ds_sach;
 
 
     @FXML
